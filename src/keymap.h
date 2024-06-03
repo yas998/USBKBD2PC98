@@ -85,7 +85,7 @@ const uint8_t keytable98[] PROGMEM = {
     0x3a,    // 52h  UP
     0xff,    // 53h  NumLock
     0x41,    // 54h  Num /
-    0xff,    // 55h  Num *
+    0x45,    // 55h  Num *
     0x40,    // 56h  Num -
     0x49,    // 57h  Num +
     0x1c,    // 58h  Num Enter
@@ -99,7 +99,7 @@ const uint8_t keytable98[] PROGMEM = {
     0x43,    // 60h  Num 8
     0x44,    // 61h  Num 9
     0x4e,    // 62h  Num 0
-    0xff,    // 63h  Num .
+    0x50,    // 63h  Num .
     0xff,    // 64h  []
     0xff,    // 65h  App
     0xff,    // 66h  []
