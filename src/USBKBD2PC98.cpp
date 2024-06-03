@@ -50,7 +50,7 @@ volatile uint8_t sCode = 0xff;          // スキャンコード
 volatile uint8_t prevScode = 0xff;      // 前回スキャンコード
 volatile int16_t sCodeCnt = 0;          // キーリピート回数
 volatile int16_t delayTime = 500;       // キーリピート開始(初期値500ms)
-volatile int16_t repeatTime = 110;      // キーリピート間隔(初期値110ms)
+volatile int16_t repeatTime = 50;      // キーリピート間隔(初期値110ms)
 
 volatile int16_t XYlimit = 256;         // マウスリミット値
 volatile int16_t xState = 0;            // マウスステータス(X)
