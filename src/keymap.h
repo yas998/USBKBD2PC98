@@ -68,16 +68,16 @@ const uint8_t keytable98[] PROGMEM = {
     0x69,    // 41h  F8
     0x6a,    // 42h  F9
     0x6b,    // 43h  F10
-    0xff,    // 44h  F11
-    0xff,    // 45h  F12
+    0x61,    // 44h  F11
+    0x60,    // 45h  F12
     0x61,    // 46h  Print Screen
     0xff,    // 47h  Scroll Lock
     0x60,    // 48h  Pause
     0x38,    // 49h  INSERT
-    0x3f,    // 4Ah  HOME
+    0x3e,    // 4Ah  HOME
     0x36,    // 4Bh  PAGE UP
     0x39,    // 4Ch  DEL
-    0xff,    // 4Dh  End
+    0x3f,    // 4Dh  End
     0x37,    // 4Eh  PAGE
     0x3c,    // 4Fh  RIGHT
     0x3b,    // 50h  LEFT
