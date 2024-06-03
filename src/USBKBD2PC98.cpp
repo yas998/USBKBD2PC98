@@ -57,6 +57,12 @@ volatile int16_t xState = 0;            // マウスステータス(X)
 volatile int16_t ySstate = 0;           // マウスステータス(Y)
 volatile int16_t bSstate = 0;           // マウスステータス(B)
 
+volatile bool isCapsOn = false;
+volatile bool isKanaOn = false;
+
+#define KEYCODE_CAPS 0x39
+#define KEYCODE_KANA 0x88
+
 void sendRepeat();
 //
 // HIDキーボード レポートパーサークラスの定義
@@ -374,6 +380,12 @@ void KbdRptParser::OnKeyDown(uint8_t mod, uint8_t key) {
   Serial.print(F("DN ["));  Serial.print(F("mod="));  Serial.print(mod, HEX);
   Serial.print(F(" key="));  Serial.print(key, HEX);  Serial.println(F("]"));
 #endif
+  // Caps とかなキーは無視
+  if (key == KEYCODE_CAPS || key == KEYCODE_KANA)
+  {
+    return;
+  }
+
   // HID Usage ID から PC98 スキャンコード に変換
   sendKeyMake(key);
 }
@@ -389,6 +401,37 @@ void KbdRptParser::OnKeyUp(uint8_t mod, uint8_t key) {
   Serial.print(F("UP ["));  Serial.print(F("mod="));  Serial.print(mod, HEX);
   Serial.print(F(" key="));  Serial.print(key, HEX);  Serial.println(F("]"));
 #endif
+  // Caps キーの送信
+  if (key == KEYCODE_CAPS)
+  {
+    if (isCapsOn)
+    {
+      sendKeyBreak(key);
+      isCapsOn = false;
+    }
+    else
+    {
+      sendKeyMake(key);
+      isCapsOn = true;
+    }
+    return;
+  }
+  // かなキーの送信
+  if (key == KEYCODE_KANA)
+  {
+    if (isKanaOn)
+    {
+      sendKeyBreak(key);
+      isKanaOn = false;
+    }
+    else
+    {
+      sendKeyMake(key);
+      isKanaOn = true;
+    }
+    return;
+  }
+
   // HID Usage ID から PC98 スキャンコード に変換
   sendKeyBreak(key);
 }
